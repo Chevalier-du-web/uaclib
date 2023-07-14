@@ -9,9 +9,9 @@ class LoginPage:
         # frame 1
         frame1 = Canvas(self.frame,width=width//2, height=height,bg="pink")
         
-        img=Image.open('images/biblio.png')
-        frame1.image = ImageTk.PhotoImage(img)
-        frame1.create_image(100,55,image=frame1.image,anchor='nw')
+        # img=Image.open('images/biblio.png')
+        # frame1.image = ImageTk.PhotoImage(img)
+        # frame1.create_image(100,55,image=frame1.image,anchor='nw')
         
         frame1.place(x=0,y=0)
 
