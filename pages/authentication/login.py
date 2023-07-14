@@ -2,6 +2,9 @@
 from tkinter import *
 from PIL import ImageTk, Image
 
+from pages.home.home_page import HomePage
+
+
 class LoginPage:
     def __init__(self,root,width,height):
         self.frame = Canvas(root,width=width, height=height)
@@ -49,7 +52,8 @@ class LoginPage:
         
 
 
-        Button(frame2,width=30,pady=7,text='Login',bg='#57a1f8',fg='white',cursor='hand2',border=0).place(x=200,y=420)
+        Button(frame2,width=30,pady=7,text='Login',bg='#57a1f8',fg='white',cursor='hand2',
+               border=0,command=lambda:HomePage(self.frame,width,height)).place(x=200,y=420)
         
         from pages.authentication.register import RegisterPage 
         
