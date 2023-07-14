@@ -11,3 +11,4 @@ class Style:
     font3_b = ("Arial", 17, 'bold')
     font4_b = ("Arial", 18, 'bold')
     font5_b = ("Arial", 25, 'bold')
+    font6_b = ("Arial", 30, 'bold')

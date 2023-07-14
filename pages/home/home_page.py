@@ -2,6 +2,10 @@
 from tkinter import *
 from components.style import Style
 from PIL import ImageTk,Image
+
+from pages.profil_user.profil_page import ProfilPage
+
+
 class HomePage:
     def __init__(self,root,width,height):
         self.frame = Canvas(root,width=width, height=height)
@@ -12,11 +16,11 @@ class HomePage:
 
         # USer name logged
         Label(self.siderbar, text="Welcome Brandon", bg='lightgreen', font=Style.font4_i).place(x=900, y=20)
-        # img = Image.open('../../assets/logo.png')
+        # img = Image.open('./../../assets/logo.png')
         # self.frame.image = ImageTk.PhotoImage(img)
         # self.frame.create_image(770, 20, image=self.frame.image, anchor='nw')
-        img = PhotoImage(file="../../assets/logo.png")
-        self.frame.create_image(20, 20, anchor=NW, image=img)
+        # img = PhotoImage(file="../../assets/user.png")
+        # self.frame.create_image(20, 20, anchor=NW, image=img)
 
         self.siderbar.place(x=0,y=0)
 
@@ -25,7 +29,7 @@ class HomePage:
 
         Label(self.menu,text="Services",font=Style.font5_b,bg='grey',fg='white').place(x=55,y=45)
         # profil page ..
-        btn_profil = Button(self.menu, text="Profil",font=Style.font1_i, command=lambda: self.hello())
+        btn_profil = Button(self.menu, text="Profil",font=Style.font1_i, command=lambda: ProfilPage(self.body,width-(width//5),height-65))
         btn_profil.place(x=6, y=120,width=width//5-8)
 
         # list of users ...
@@ -57,7 +61,7 @@ class HomePage:
         btn_statistics.place(x=6, y=505, width=width // 5 - 8)
 
         # quit app ...
-        btn_statistics = Button(self.menu, text="Exit", font=Style.font1_i, command=lambda: self.hello())
+        btn_statistics = Button(self.menu, text="Exit", font=Style.font1_i, command=root.destroy)
         btn_statistics.place(x=6, y=560, width=width // 5 - 8)
 
 
@@ -69,6 +73,14 @@ class HomePage:
 
         # contenu de la page
         self.body = Canvas(root,width=width-(width//5),height=height-65,bg='lightblue')
+        Label(self.body,text="Rejoignez-nous pour enrichir vos connaissances",
+              bg='lightblue',font=Style.font5_b).place(x=120, y=50)
+        img = Image.open('assets/onb2.PNG')
+        self.body.image = ImageTk.PhotoImage(img)
+        self.body.create_image(280, 20, image=self.body.image, anchor='nw')
+
+        Label(self.body, text="Le savoir est le pouvoir, cultivons nous, lisons !!!",
+              bg='lightblue', font=Style.font5_b).place(x=120, y=465)
 
 
         self.body.place(x=width//5,y=65)
