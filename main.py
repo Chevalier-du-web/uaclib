@@ -4,6 +4,7 @@
 from tkinter import *
 from pages.authentication.login import LoginPage
 
+
 class MainApp:
     def __init__(self):
         self.root = Tk()
@@ -14,7 +15,7 @@ class MainApp:
 
         # Appel de la page login ....
         LoginPage(self.root,1250,670)
-
+        
         # affichage de la fenetre principale...
         self.root.mainloop()
 
