@@ -1,6 +1,6 @@
 #importation des dependences ...
 from tkinter import *
-from tkinter import messagebox as md
+from tkinter import messagebox as md, ttk
 from components.style import Style
 from PIL import ImageTk,Image
 
@@ -21,28 +21,36 @@ class AddUserPage:
 
         # entries for user that will be deleted
         Label(self.frame,font=Style.font1_i,text='Username : ',bg='lightblue').place(x=400,y=120)
-        self.user_delete = Entry(self.frame,font=Style.font1_i)
-        self.user_delete.place(x=540,y=120)
+        self.username = Entry(self.frame,font=Style.font1_i)
+        self.username.place(x=540,y=120)
+        self.username.bind('<Return>', lambda e: self.email.focus_set())
 
         Label(self.frame, font=Style.font3_i, text='Email : ', bg='lightblue').place(x=400, y=160)
-        self.user_delete = Entry(self.frame, font=Style.font1_i)
-        self.user_delete.place(x=540, y=160)
+        self.email = Entry(self.frame, font=Style.font1_i)
+        self.email.place(x=540, y=160)
+        self.email.bind('<Return>', lambda e: self.level.focus_set())
 
+        diplomes = ['Level 1', 'Level 2', 'Level 3', 'Master 1', 'Master 2', 'Doctora', 'Others']
         Label(self.frame, font=Style.font3_i, text='Level : ', bg='lightblue').place(x=400, y=200)
-        self.user_delete = Entry(self.frame, font=Style.font1_i)
-        self.user_delete.place(x=540, y=200)
+        self.level = ttk.Combobox(self.frame, font=Style.font1_i,values=diplomes,width=18)
+        self.level.current(0)
+        self.level.place(x=540, y=200)
+        self.level.bind('<Return>', lambda e: self.sex.focus_set())
 
         Label(self.frame, font=Style.font3_i, text='Sex : ', bg='lightblue').place(x=400, y=240)
-        self.user_delete = Entry(self.frame, font=Style.font1_i)
-        self.user_delete.place(x=540, y=240)
+        self.sex = ttk.Combobox(self.frame, font=Style.font1_i,values=['Male', 'Female'],width=18)
+        self.sex.current(0)
+        self.sex.place(x=540, y=240)
+        self.sex.bind('<Return>', lambda e: self.password.focus_set())
 
         Label(self.frame, font=Style.font3_i, text='Password : ', bg='lightblue').place(x=400, y=280)
-        self.user_delete = Entry(self.frame, font=Style.font1_i)
-        self.user_delete.place(x=540, y=280)
+        self.password = Entry(self.frame, font=Style.font1_i)
+        self.password.place(x=540, y=280)
+        self.password.bind('<Return>', lambda e: self.phone.focus_set())
 
         Label(self.frame, font=Style.font3_i, text='Phone : ', bg='lightblue').place(x=400, y=320)
-        self.user_delete = Entry(self.frame, font=Style.font1_i)
-        self.user_delete.place(x=540, y=320)
+        self.phone = Entry(self.frame, font=Style.font1_i)
+        self.phone.place(x=540, y=320)
 
         # text for warning
         Label(self.frame,text="NB : Seuls les utilisateurs inscrits "
@@ -63,4 +71,16 @@ class AddUserPage:
         self.clear_data()
 
     def clear_data(self):
-        self.user_delete.delete(0,END)
+        #  clear all fields
+
+        self.username.delete(0,END)
+        self.email.delete(0, END)
+        self.sex.delete(0, END)
+        self.phone.delete(0, END)
+        self.level.delete(0, END)
+        self.password.delete(0, END)
+
+    def nextentrybox(event):
+        event.widget.insert("end", event.keysym)
+        event.widget.tk_focusNext().focus()
+        return ('break')
