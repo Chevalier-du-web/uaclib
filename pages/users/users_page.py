@@ -19,10 +19,7 @@ class UsersPage:
         table.heading('email', text='Email')
         table.heading('level', text='Level')
 
-
-
-
-        table.place(x=90,y=120)
+        table.place(x=90,y=170)
 
 
         # affichage de de la page ...
