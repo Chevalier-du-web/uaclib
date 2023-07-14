@@ -1,12 +1,19 @@
 from tkinter import *
 from tkinter import ttk
 from components.style import Style
+from pages.users.add_user import AddUserPage
+from pages.users.delete_user import DeleteUserPage
 
 
 class UsersPage:
     def __init__(self,root,width,height):
         self.frame = Canvas(root,width=width, height=height,bg='lightblue')
         Label(self.frame,text="All users",font=Style.font4_i,bg='lightblue').place(x=50,y=20)
+
+        Button(self.frame,font=('Arial',12,'italic'),text='           Add new user           ',
+               command=lambda:AddUserPage(self.frame,width=width,height=height)).place(x=90,y=120)
+        Button(self.frame, font=('Arial', 12, 'italic'), text='           Delete user           ',
+               command=lambda:DeleteUserPage(self.frame,width=width,height=height)).place(x=310, y=120)
 
         # define columns
         columns = ('id','username', 'email', 'level')
@@ -21,6 +28,7 @@ class UsersPage:
 
         table.place(x=90,y=170)
 
+        Button(self.frame,font=('Arial',12,'italic'),text='           back           ',command=self.frame.destroy).place(x=40,y=500)
 
         # affichage de de la page ...
         self.frame.place(x=0, y=0)
