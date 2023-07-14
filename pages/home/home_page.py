@@ -3,7 +3,9 @@ from tkinter import *
 from components.style import Style
 from PIL import ImageTk,Image
 
+from pages.books.book_page import BooksPage
 from pages.profil_user.profil_page import ProfilPage
+from pages.users.users_page import UsersPage
 
 
 class HomePage:
@@ -16,11 +18,6 @@ class HomePage:
 
         # USer name logged
         Label(self.siderbar, text="Welcome Brandon", bg='lightgreen', font=Style.font4_i).place(x=900, y=20)
-        # img = Image.open('./../../assets/logo.png')
-        # self.frame.image = ImageTk.PhotoImage(img)
-        # self.frame.create_image(770, 20, image=self.frame.image, anchor='nw')
-        # img = PhotoImage(file="../../assets/user.png")
-        # self.frame.create_image(20, 20, anchor=NW, image=img)
 
         self.siderbar.place(x=0,y=0)
 
@@ -33,11 +30,11 @@ class HomePage:
         btn_profil.place(x=6, y=120,width=width//5-8)
 
         # list of users ...
-        btn_users = Button(self.menu, text="Users", font=Style.font1_i, command=lambda: self.hello())
+        btn_users = Button(self.menu, text="Users", font=Style.font1_i, command=lambda: UsersPage(self.body,width-(width//5),height-65))
         btn_users.place(x=6, y=175, width=width // 5 - 8)
 
         # # list of books ...
-        btn_books = Button(self.menu, text="Books", font=Style.font1_i, command=lambda: self.hello())
+        btn_books = Button(self.menu, text="Books", font=Style.font1_i,command=lambda: BooksPage(self.body,width-(width//5),height-65))
         btn_books.place(x=6, y=230, width=width // 5 - 8)
 
         # # list of borrowings ...
