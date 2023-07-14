@@ -18,6 +18,8 @@ class ProfilPage:
         Label(self.frame_info,text="password :  Brandon123",font=Style.font3_i,bg='teal',fg='white').place(x=30,y=150)
         Label(self.frame_info,text="Level :  2",font=Style.font3_i,bg='teal',fg='white').place(x=30,y=200)
         Label(self.frame_info,text="Sex :  Male",font=Style.font3_i,bg='teal',fg='white').place(x=30,y=250)
+        Label(self.frame_info,text="Phone :  657591936",font=Style.font3_i,bg='teal',fg='white').place(x=30,y=300)
+
 
         Button(self.frame_info,text="       back       ",font=Style.font2_b,command=self.frame.destroy).place(x=60,y=350)
         Button(self.frame_info,text="    edit profil    ",font=Style.font2_b).place(x=340,y=350)
