@@ -2,11 +2,15 @@
 
 # importations des dependances ...
 from tkinter import *
+
+from backend.database_structure import DataBase
 from pages.authentication.login import LoginPage
+
 
 
 class MainApp:
     def __init__(self):
+        DataBase()
         self.root = Tk()
         self.root.geometry("1250x670+50+17")
         self.root.title("UACLIB")
