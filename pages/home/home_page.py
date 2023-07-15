@@ -38,7 +38,7 @@ class HomePage:
         btn_profil.place(x=6, y=120,width=width//5-8)
 
         # list of users ...
-        btn_users = Button(self.menu, text="Users", font=Style.font1_i, command=lambda: UsersPage(self.body,width-(width//5),height-65))
+        btn_users = Button(self.menu, text="Users",   font=Style.font1_i, command=lambda: UsersPage(self.body,width-(width//5),height-65))
         btn_users.place(x=6, y=175, width=width // 5 - 8)
 
         # # list of books ...
