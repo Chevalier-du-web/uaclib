@@ -4,7 +4,11 @@ from components.style import Style
 from PIL import ImageTk,Image
 
 from pages.books.book_page import BooksPage
+from pages.borrowing.borrowing_page import BorrowingPage
 from pages.profil_user.profil_page import ProfilPage
+from pages.reservations.reservation_page import ReservationPage
+from pages.statistics.statistics_page import StatisticsPage
+from pages.transactions.transaction_page import TransactionPage
 from pages.users.users_page import UsersPage
 
 
@@ -34,27 +38,33 @@ class HomePage:
         btn_users.place(x=6, y=175, width=width // 5 - 8)
 
         # # list of books ...
-        btn_books = Button(self.menu, text="Books", font=Style.font1_i,command=lambda: BooksPage(self.body,width-(width//5),height-65))
+        btn_books = Button(self.menu, text="Books", font=Style.font1_i,
+                           command=lambda: BooksPage(self.body,width-(width//5),height-65))
         btn_books.place(x=6, y=230, width=width // 5 - 8)
 
         # # list of borrowings ...
-        btn_borrowing = Button(self.menu, text="Borrowing", font=Style.font1_i, command=lambda: self.hello())
+        btn_borrowing = Button(self.menu, text="Borrowing", font=Style.font1_i,
+                               command=lambda: BorrowingPage(self.body,width-(width//5),height-65))
         btn_borrowing.place(x=6, y=285, width=width // 5 - 8)
 
         # list of reservations ...
-        btn_reservation = Button(self.menu, text="Reservation", font=Style.font1_i, command=lambda: self.hello())
+        btn_reservation = Button(self.menu, text="Reservation", font=Style.font1_i,
+                                 command=lambda: ReservationPage(self.body,width-(width//5),height-65))
         btn_reservation.place(x=6, y=340, width=width // 5 - 8)
 
         # list of transactions ...
-        btn_transaction = Button(self.menu, text="Transactions", font=Style.font1_i, command=lambda: self.hello())
+        btn_transaction = Button(self.menu, text="Transactions", font=Style.font1_i,
+                                 command=lambda: TransactionPage(self.body,width-(width//5),height-65))
         btn_transaction.place(x=6, y=395, width=width // 5 - 8)
 
         # list of Statistics and rapports ...
-        btn_statistics = Button(self.menu, text="Statistics", font=Style.font1_i, command=lambda: self.hello())
+        btn_statistics = Button(self.menu, text="Statistics", font=Style.font1_i,
+                                command=lambda: StatisticsPage(self.body,width-(width//5),height-65))
         btn_statistics.place(x=6, y=450, width=width // 5 - 8)
 
         # logout button ...
-        btn_statistics = Button(self.menu, text="Logout", font=Style.font1_i, command=lambda: self.hello())
+        btn_statistics = Button(self.menu, text="Logout", font=Style.font1_i,
+                                command=lambda: self.hello())
         btn_statistics.place(x=6, y=505, width=width // 5 - 8)
 
         # quit app ...
