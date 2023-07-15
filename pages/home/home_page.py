@@ -22,6 +22,10 @@ class HomePage:
 
         # USer name logged
         Label(self.siderbar, text="Welcome Brandon", bg='lightgreen', font=Style.font4_i).place(x=900, y=20)
+        #  add image ...
+        img = Image.open('assets/user.png')
+        self.siderbar.image = ImageTk.PhotoImage(img)
+        self.siderbar.create_image(1200, 15, image=self.siderbar.image, anchor='nw')
 
         self.siderbar.place(x=0,y=0)
 
@@ -64,7 +68,7 @@ class HomePage:
 
         # logout button ...
         btn_statistics = Button(self.menu, text="Logout", font=Style.font1_i,
-                                command=lambda: self.hello())
+                                command=lambda: self.transition(width,height))
         btn_statistics.place(x=6, y=505, width=width // 5 - 8)
 
         # quit app ...
@@ -95,3 +99,8 @@ class HomePage:
         self.frame.place(x=0, y=0)
     def hello(self):
         print("hello you !")
+    def transition(self,width,height):
+        from pages.authentication.login import LoginPage
+
+        self.body.destroy()
+        LoginPage(self.frame, width, height)
