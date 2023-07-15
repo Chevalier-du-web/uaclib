@@ -34,7 +34,8 @@ class HomePage:
 
         Label(self.menu,text="Services",font=Style.font5_b,bg='grey',fg='white').place(x=55,y=45)
         # profil page ..
-        btn_profil = Button(self.menu, text="Profil",font=Style.font1_i, command=lambda: ProfilPage(self.body,width-(width//5),height-65))
+        btn_profil = Button(self.menu, text="Profil",font=Style.font1_i,
+                            command=lambda: ProfilPage(self.body,width-(width//5),height-65,username))
         btn_profil.place(x=6, y=120,width=width//5-8)
 
         # list of users ...

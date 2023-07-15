@@ -1,14 +1,23 @@
 from tkinter import *
 from PIL import ImageTk,Image
+
+from backend.request_file import Request
 from components.style import Style
 from tkinter import filedialog
 
 
 class ProfilPage:
-    def __init__(self,root,width,height):
+    def __init__(self,root,width,height, username):
         self.frame = Canvas(root,height=height, width=width,bg='lightblue')
+        #  getting data ...
+        request = "select * from User where username=?"
+        params = (username,)
+        data = Request().get_request_with_params(request,params)
+        print(data)
+
+
         #  page -title
-        Label(self.frame,text="Profil-Page",font=Style.font4_i,bg='lightblue').place(x=50,y=20)
+        Label(self.frame,text=f"Profil-Page       ID : {data[0][0]}",font=Style.font4_i,bg='lightblue').place(x=50,y=20)
 
         self.frame_info = Canvas(self.frame,width=550,height=450,bg='teal')
 
@@ -41,3 +50,4 @@ class ProfilPage:
     def openfile(self):
         file = filedialog.askopenfilename()
         self.photo = str(file)
+
