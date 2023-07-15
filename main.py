@@ -14,9 +14,9 @@ class MainApp:
         # self.root.iconbitmap("")
 
         # Appel de la page login ....
-        #LoginPage(self.root,1250,670)
+        LoginPage(self.root,1250,670)
         # Appel de la page home ....
-        HomePage(self.root, 1250, 670)
+        #HomePage(self.root, 1250, 670)
 
         # affichage de la fenetre principale...
         self.root.mainloop()
