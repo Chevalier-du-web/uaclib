@@ -3,6 +3,7 @@ import sqlite3 as sq
 
 
 class DataBase:
+    # creation of tables an database ....
     def __init__(self):
         self.database = sq.connect('uaclib_db.db')
 
@@ -21,4 +22,40 @@ class DataBase:
 	    );"""
         self.cursor = self.database.cursor()
         self.cursor.execute(self.request)
-    def create_
+    def create_book_table(self):
+        self.request = """
+                CREATE TABLE IF NOT EXISTS Books (
+        	        id integer PRIMARY KEY,
+        	        title text NOT NULL,
+        	        subject text NOT NULL,
+        	        author text NOT NULL,
+        	        quantity integer NOT NULL,
+        	    );"""
+        self.cursor = self.database.cursor()
+        self.cursor.execute(self.request)
+    def create_borrowing_table(self):
+        self.request = """
+                CREATE TABLE IF NOT EXISTS Borrowing (
+        	        id integer PRIMARY KEY,
+        	        username text NOT NULL,
+        	        book text NOT NULL,
+        	        quantity integer NOT NULL,
+        	        datestart text NOT NULL,
+        	        dateend text NOT NULL
+        	    );"""
+        self.cursor = self.database.cursor()
+        self.cursor.execute(self.request)
+
+    def create_reservation_table(self):
+        self.request = """
+                CREATE TABLE IF NOT EXISTS Reservation (
+        	        id integer PRIMARY KEY,
+        	        username text NOT NULL,
+        	        book text NOT NULL,
+        	        quantity integer NOT NULL,
+        	        datestart text NOT NULL,
+        	        dateend text NOT NULL
+        	    );"""
+        self.cursor = self.database.cursor()
+        self.cursor.execute(self.request)
+
