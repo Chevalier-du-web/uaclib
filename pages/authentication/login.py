@@ -1,13 +1,16 @@
 #importation des dependences ...
 from tkinter import *
 from PIL import ImageTk, Image
-
+from tkinter import  messagebox as mb
+from backend.request_file import Request
 from components.style import Style
 from pages.home.home_page import HomePage
 
 
 class LoginPage:
     def __init__(self,root,width,height):
+        self.width = width
+        self.height = height
         self.frame = Canvas(root,width=width, height=height)
 
         # frame 1
@@ -58,11 +61,9 @@ class LoginPage:
         Button(frame2,text='i have forget my password',fg='blue',bg='white',border=0,
                font=('Microsoft Yahei UI Light',9),cursor='hand2',command=lambda:Forgetpassword(self.frame,width,height)).place(x=190,y=380)
 
-        
-
 
         Button(frame2,width=34,pady=7,text='Login',bg='#57a1f8',fg='white',cursor='hand2',
-               border=0,command=lambda:HomePage(self.frame,width,height)).place(x=200,y=420)
+               border=0,command=self.login).place(x=200,y=420)
         
         from pages.authentication.register import RegisterPage 
         
@@ -73,3 +74,22 @@ class LoginPage:
 
         # affichage de de la page ...
         self.frame.place(x=0, y=0)
+
+    def login(self):
+        # our request here ...
+        request = "SELECT * FROM User WHERE username=?"
+        if self.username_entry.get()!='' and self.password_entry.get()!='' :
+            params = (self.username_entry.get(),)
+            data = Request().get_request_with_params(request,params)
+            print(data)
+            # check result
+            if len(data) == 0 :
+                mb.showwarning("Warning", "Unregistered user !")
+            else:
+                if self.password_entry.get() == data[0][5] :
+                    mb.showinfo("Information", "You are logged !")
+                    HomePage(self.frame, self.width, self.height,self.username_entry.get())
+                else:
+                    mb.showerror("Error", "Invalide password !")
+        else:
+            mb.showerror("Error", "All fields are required !")

@@ -13,7 +13,7 @@ from pages.users.users_page import UsersPage
 
 
 class HomePage:
-    def __init__(self,root,width,height):
+    def __init__(self,root,width,height,username):
         self.frame = Canvas(root,width=width, height=height)
         self.siderbar = Canvas(self.frame,height=65, width=width,bg='lightgreen')
         Label(self.siderbar,text="UACLIB APP",bg='lightgreen',font=Style.font4_i).place(x=70,y=20)
@@ -21,7 +21,7 @@ class HomePage:
         Label(self.siderbar, text="Votre librairie toujours pres de vous !", bg='lightgreen', font=Style.font3_i).place(x=400, y=20)
 
         # USer name logged
-        Label(self.siderbar, text="Welcome Brandon", bg='lightgreen', font=Style.font4_i).place(x=900, y=20)
+        Label(self.siderbar, text=f"Welcome {username}", bg='lightgreen', font=Style.font4_i).place(x=900, y=20)
         #  add image ...
         img = Image.open('assets/user.png')
         self.siderbar.image = ImageTk.PhotoImage(img)
@@ -38,7 +38,7 @@ class HomePage:
         btn_profil.place(x=6, y=120,width=width//5-8)
 
         # list of users ...
-        btn_users = Button(self.menu, text="Users", font=Style.font1_i, command=lambda: UsersPage(self.body,width-(width//5),height-65))
+        btn_users = Button(self.menu, text="Users",   font=Style.font1_i, command=lambda: UsersPage(self.body,width-(width//5),height-65))
         btn_users.place(x=6, y=175, width=width // 5 - 8)
 
         # # list of books ...
