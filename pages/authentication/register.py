@@ -1,22 +1,35 @@
 #importation des dependences ...
 from tkinter import *
 
+from PIL import ImageTk,Image
+
+from components.style import Style
+from pages.home.home_page import HomePage
+
+
 class RegisterPage:
     def __init__(self,root,width,height):
         self.frame = Canvas(root,width=width, height=height)
 
         # frame 1
-        frame1 = Canvas(self.frame,width=width//2, height=height,bg="pink")
-        
-        
+        self.frame1 = Canvas(self.frame, width=width // 2, height=height, bg="lightblue")
 
+        img = Image.open('assets/biblio.png')
+        self.frame1.image = ImageTk.PhotoImage(img)
+        self.frame1.create_image(0, 0, image=self.frame1.image, anchor='nw')
 
-        frame1.place(x=0,y=0)
+        Label(self.frame1, text='U A C L I B', font=('Arial', 30, 'bold'),
+              bg="lightblue").place(x=200, y=400)
+
+        Label(self.frame1, text='Regoignez toute la communaute des \nleaders de demain.\n'
+                                'Cultivons-nous pour batir un monde meilleur !', font=Style.font3_b,
+              bg="lightblue").place(x=40, y=460)
+        self.frame1.place(x=0, y=0)
 
         # frame 2
         frame2 = Canvas(self.frame, width=width // 2, height=height,bg='white')
         
-        heading=Label(frame2,text='Come and register !!',fg="#57a1f8",bg='white',font=('Microsoft Yahei UI Light',14,'bold'))
+        heading=Label(frame2,text='Register',fg="#57a1f8",bg='white',font=('Microsoft Yahei UI Light',30,'bold'))
         heading.place(x=200,y=50)
         
         #######username
@@ -70,7 +83,8 @@ class RegisterPage:
         email_line.place(x=190,y=570)
         
         ####button
-        Button(frame2,width=30,pady=7,text='Register',bg='#57a1f8',fg='white',cursor='hand2',border=0).place(x=200,y=600)
+        Button(frame2,width=34,pady=7,text='Register',bg='#57a1f8',fg='white',cursor='hand2',border=0,
+               command=lambda:HomePage(self.frame,width,height)).place(x=200,y=600)
         
         
         
