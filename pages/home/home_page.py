@@ -13,7 +13,7 @@ from pages.users.users_page import UsersPage
 
 
 class HomePage:
-    def __init__(self,root,width,height):
+    def __init__(self,root,width,height,username):
         self.frame = Canvas(root,width=width, height=height)
         self.siderbar = Canvas(self.frame,height=65, width=width,bg='lightgreen')
         Label(self.siderbar,text="UACLIB APP",bg='lightgreen',font=Style.font4_i).place(x=70,y=20)
@@ -21,7 +21,7 @@ class HomePage:
         Label(self.siderbar, text="Votre librairie toujours pres de vous !", bg='lightgreen', font=Style.font3_i).place(x=400, y=20)
 
         # USer name logged
-        Label(self.siderbar, text="Welcome Brandon", bg='lightgreen', font=Style.font4_i).place(x=900, y=20)
+        Label(self.siderbar, text=f"Welcome {username}", bg='lightgreen', font=Style.font4_i).place(x=900, y=20)
         #  add image ...
         img = Image.open('assets/user.png')
         self.siderbar.image = ImageTk.PhotoImage(img)
