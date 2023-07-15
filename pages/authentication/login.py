@@ -81,7 +81,6 @@ class LoginPage:
         if self.username_entry.get()!='' and self.password_entry.get()!='' :
             params = (self.username_entry.get(),)
             data = Request().get_request_with_params(request,params)
-            print(data)
             # check result
             if len(data) == 0 :
                 mb.showwarning("Warning", "Unregistered user !")
