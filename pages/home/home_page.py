@@ -22,6 +22,10 @@ class HomePage:
 
         # USer name logged
         Label(self.siderbar, text="Welcome Brandon", bg='lightgreen', font=Style.font4_i).place(x=900, y=20)
+        #  add image ...
+        img = Image.open('assets/user.png')
+        self.siderbar.image = ImageTk.PhotoImage(img)
+        self.siderbar.create_image(1200, 15, image=self.siderbar.image, anchor='nw')
 
         self.siderbar.place(x=0,y=0)
 
