@@ -64,7 +64,7 @@ class HomePage:
 
         # logout button ...
         btn_statistics = Button(self.menu, text="Logout", font=Style.font1_i,
-                                command=lambda: self.hello())
+                                command=lambda: self.transition(width,height))
         btn_statistics.place(x=6, y=505, width=width // 5 - 8)
 
         # quit app ...
@@ -95,3 +95,8 @@ class HomePage:
         self.frame.place(x=0, y=0)
     def hello(self):
         print("hello you !")
+    def transition(self,width,height):
+        from pages.authentication.login import LoginPage
+
+        self.body.destroy()
+        LoginPage(self.frame, width, height)

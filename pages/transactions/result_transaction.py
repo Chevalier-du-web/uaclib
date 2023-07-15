@@ -7,25 +7,27 @@ from pages.borrowing.add_borrow import AddBorrowingPage
 from pages.reservations.add_reservation import AddReservationPage
 
 
-class ReservationPage:
+class ResultTransactionPage:
     def __init__(self,root,width,height):
         self.frame = Canvas(root,width=width, height=height,bg='lightblue')
-        Label(self.frame,text="Reservation - Page",font=Style.font4_i,bg='lightblue').place(x=50,y=20)
-        Button(self.frame,font=('Arial',12,'italic'),text='      Add new reservation      ',
-               command=lambda: AddReservationPage(self.frame,width,height)).place(x=678,y=120)
+        Label(self.frame,text="Transactions of Mr Brandon - Page",font=Style.font4_i,bg='lightblue').place(x=50,y=20)
 
         # define columns
-        columns = ('id', 'username', 'email', 'level')
+        columns = ('type', 'book', 'fromdate', 'todate')
 
         table = ttk.Treeview(self.frame, columns=columns, show='headings')
 
         # define headings
-        table.heading('id', text='Username')
-        table.heading('username', text='Book')
-        table.heading('email', text='Start date')
-        table.heading('level', text='End date')
+        table.heading('type', text='Category')
+        table.heading('book', text='Book')
+        table.heading('fromdate', text='Start date')
+        table.heading('todate', text='End date')
 
-        table.place(x=90, y=170)
+        table.place(x=90, y=80)
+        # more information
+        Label(self.frame,text='Total of reservations  :  10',font=Style.font2_i,bg='lightblue').place(x=90,y=330)
+        Label(self.frame,text='Total of borrowings  :  20',font=Style.font2_i,bg='lightblue').place(x=90,y=370)
+
 
         Button(self.frame,font=('Arial',12,'italic'),text='           back           ',command=self.frame.destroy).place(x=40,y=500)
 
