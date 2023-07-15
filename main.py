@@ -5,7 +5,7 @@ from tkinter import *
 
 from backend.database_structure import DataBase
 from pages.authentication.login import LoginPage
-
+from pages.home.home_page import HomePage
 
 
 class MainApp:
@@ -18,8 +18,10 @@ class MainApp:
         # self.root.iconbitmap("")
 
         # Appel de la page login ....
-        LoginPage(self.root,1250,670)
-        
+        #LoginPage(self.root,1250,670)
+        # Appel de la page home ....
+        HomePage(self.root, 1250, 670)
+
         # affichage de la fenetre principale...
         self.root.mainloop()
 
