@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 
 from components.style import Style
+from pages.books.add_book import AddBookPage
 
 
 class BooksPage:
@@ -31,6 +32,8 @@ class BooksPage:
         table.heading('quantity', text='Quantity')
 
         table.place(x=90, y=150)
+        Button(self.frame,font=('Arial',12,'italic'),text='           Add new book           ',bg='teal',fg='white',
+               command=lambda: AddBookPage(self.frame,width,height)).place(x=695,y=390)
 
         Button(self.frame,font=('Arial',12,'italic'),text='           back           ',command=self.frame.destroy).place(x=40,y=500)
 
