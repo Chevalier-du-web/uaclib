@@ -18,6 +18,7 @@ class Request:
         return 0
 
     def post_request_without_params(self,request):
+
         try:
             self.cursor.execute(request)
             self.database.commit()
@@ -25,7 +26,6 @@ class Request:
             raise mb.showerror(" Warning", "A error occured !")
         # save changes
         return 0
-
 
     # get request methode
     def get_request_with_params(self,request,params):

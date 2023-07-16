@@ -1,7 +1,6 @@
 #importation des dependences ...
 from tkinter import *
 from tkinter import ttk
-
 from backend.request_file import Request
 from components.style import Style
 from pages.borrowing.add_borrow import AddBorrowingPage
@@ -31,7 +30,7 @@ class BorrowingPage:
         # get data from borrowing
         data = Request().get_request_without_params("select * from Borrowing")
         for item in data:
-            table.insert("", index=0, values=(item[1], item[3], item[-2], item[-1], item[3]))
+            table.insert("", index=0, values=(item[1], item[2], item[-2], item[-1], item[3]))
 
         Button(self.frame,font=('Arial',12,'italic'),text='           back           ',command=self.frame.destroy).place(x=40,y=500)
 

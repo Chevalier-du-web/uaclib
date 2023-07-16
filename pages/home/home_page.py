@@ -2,7 +2,6 @@
 from tkinter import *
 from components.style import Style
 from PIL import ImageTk,Image
-
 from pages.books.book_page import BooksPage
 from pages.borrowing.borrowing_page import BorrowingPage
 from pages.profil_user.profil_page import ProfilPage
