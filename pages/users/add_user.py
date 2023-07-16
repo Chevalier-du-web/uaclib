@@ -93,9 +93,3 @@ class AddUserPage:
         self.phone.delete(0, END)
         self.level.delete(0, END)
         self.password.delete(0, END)
-<<<<<<< HEAD
-
-    
-        
-=======
->>>>>>> main
