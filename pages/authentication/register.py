@@ -130,11 +130,8 @@ class RegisterPage:
             result = Request().post_request_with_params(request,params)
             mb.showinfo("Information", "You are registed !")
             v = Request().get_request_without_params("select * from User")
-<<<<<<< HEAD
             HomePage(self.frame, self.width, self.height,self.username_entry.get())
-=======
             print("database ; ",v)
             HomePage(self.frame, self.width, self.height,id,self.username_entry.get())
->>>>>>> main
         else:
             mb.showwarning("Warning", "All fields are required !")

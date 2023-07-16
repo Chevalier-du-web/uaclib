@@ -8,10 +8,10 @@ from PIL import ImageTk,Image
 
 
 
-
-
 class AddUserPage:
     def __init__(self,root,width,height):
+        self.width = width
+        self.height = height
         self.frame = Canvas(root,width=width, height=height,bg='lightblue')
 
         # title page
@@ -63,9 +63,11 @@ class AddUserPage:
                command=self.clear_data).place(x=430, y=400)
         Button(self.frame, font=('Arial', 14, 'italic'), text='           Add user           ',
                command=lambda: self.add_user()).place(x=640, y=400)
-
+        
+        from pages.users.users_page import UsersPage
         Button(self.frame,font=('Arial',12,'italic'),text='           back           ',
-               command=self.frame.destroy).place(x=40,y=500)
+               command=lambda: UsersPage(self.frame,self.width, self.height)
+).place(x=40,y=500)
         # affichage de de la page ...
         self.frame.place(x=0, y=0)
 
@@ -79,7 +81,8 @@ class AddUserPage:
         if self.username.get()!='' and self.email.get()!='' and self.password.get()!='' and self.password.get()!='':
             Request().post_request_with_params(request,params)            
             md.showinfo('Information','  User added successfully !  ')
-            
+
+
             self.clear_data()
         else:
             md.showwarning("Warning","All fields are required")
@@ -93,9 +96,3 @@ class AddUserPage:
         self.phone.delete(0, END)
         self.level.delete(0, END)
         self.password.delete(0, END)
-<<<<<<< HEAD
-
-    
-        
-=======
->>>>>>> main
