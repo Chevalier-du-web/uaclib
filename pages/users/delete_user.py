@@ -1,6 +1,7 @@
 #importation des dependences ...
 from tkinter import *
 from tkinter import messagebox as md
+from backend.request_file import Request
 from components.style import Style
 from PIL import ImageTk,Image
 
@@ -9,6 +10,8 @@ from PIL import ImageTk,Image
 
 class DeleteUserPage:
     def __init__(self,root,width,height):
+        self.width = width
+        self.height = height
         self.frame = Canvas(root,width=width, height=height,bg='lightblue')
 
         # title page
@@ -32,14 +35,25 @@ class DeleteUserPage:
                command=self.clear_data).place(x=430, y=300)
         Button(self.frame, font=('Arial', 14, 'italic'), text='           Delete           ',
                command=lambda: self.delete_user()).place(x=640, y=300)
+        from pages.users.users_page import UsersPage
 
         Button(self.frame,font=('Arial',12,'italic'),text='           back           ',
-               command=self.frame.destroy).place(x=40,y=500)
+               command=lambda:UsersPage(self.frame,self.width,self.height)).place(x=40,y=500)
         # affichage de de la page ...
         self.frame.place(x=0, y=0)
 
     def delete_user(self):
-        md.showinfo('Information','  User delete successfully !  ')
+        
+        
+        request="delete from User where username=?"
+        params=( self.user_delete.get(),)
+        if self.user_delete.get()!='' :
+            Request().post_request_with_params(request,params)
+            md.showinfo('Information','  User delete successfully !  ')
+        else:
+            md.showwarning("Warning","Field is empty!!")
+            
+        
         self.clear_data()
 
     def clear_data(self):
