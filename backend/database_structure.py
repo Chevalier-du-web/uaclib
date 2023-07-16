@@ -12,6 +12,7 @@ class DataBase:
         self.create_borrowing_table()
         self.create_reservation_table
         self.create_user_table()
+        self.create_return_table()
 
         # self.database.close()
 
@@ -28,6 +29,7 @@ class DataBase:
 	    );"""
         self.cursor = self.database.cursor()
         self.cursor.execute(self.request)
+
     def create_book_table(self):
         self.request = """
                 CREATE TABLE IF NOT EXISTS Books (
@@ -63,6 +65,19 @@ class DataBase:
         	        datestart text NOT NULL,
         	        dateend text NOT NULL
         	    );"""
+        self.cursor = self.database.cursor()
+        self.cursor.execute(self.request)
+
+
+    def create_return_table(self):
+        self.request = """
+                CREATE TABLE IF NOT EXISTS Returns (
+                    id integer PRIMARY KEY,
+                    username text NOT NULL,
+                    book text NOT NULL,
+                    quantity integer NOT NULL,
+                    dateend text NOT NULL
+                );"""
         self.cursor = self.database.cursor()
         self.cursor.execute(self.request)
 

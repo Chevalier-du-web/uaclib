@@ -5,7 +5,6 @@ from backend.request_file import Request
 from components.style import Style
 from tkinter import filedialog, ttk
 
-
 class ProfilPage:
     def __init__(self,root,width,height, id):
         self.width = width
@@ -82,7 +81,6 @@ class ProfilPage:
         request = "select * from User where id=?"
         params = (id,)
         data = Request().get_request_with_params(request, params)
-
         #  page -title
         Label(self.frame, text=f"Profil-Page       ID : {data[0][0]}", font=Style.font4_i, bg='lightblue').place(x=50,
                                                                                                                  y=20)

@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox as mb
 from PIL import ImageTk,Image
 
+from backend.request_file import Request
 from components.style import Style
 from pages.transactions.result_transaction import ResultTransactionPage
 
@@ -32,5 +33,9 @@ class TransactionPage:
         self.frame.place(x=0, y=0)
 
     def search_user(self):
+        data = Request().get_request_with_params('select username from User where username=?',(self.username.get(),))
+        if len(data) !=0:
         # mb.showerror("Information", "User not founded !")
-        ResultTransactionPage(self.frame,self.width,self.height)
+            ResultTransactionPage(self.frame,self.width,self.height,data[0][0])
+        else:
+            mb.showwarning("Warning","User not founded !")
