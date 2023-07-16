@@ -79,8 +79,3 @@ class AddUserPage:
         self.phone.delete(0, END)
         self.level.delete(0, END)
         self.password.delete(0, END)
-
-    def nextentrybox(event):
-        event.widget.insert("end", event.keysym)
-        event.widget.tk_focusNext().focus()
-        return ('break')

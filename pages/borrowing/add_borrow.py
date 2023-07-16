@@ -1,7 +1,9 @@
 #importation des dependences ...
+from random import randint
 from tkinter import *
 from tkinter import ttk
 
+from backend.request_file import Request
 from components.style import Style
 import tkcalendar as tk
 from tkinter import messagebox as mb
@@ -16,9 +18,9 @@ class AddBorrowingPage:
 
         books_available = ['Python code',"C# book",'Football','Play poker']
         Label(self.frame, text="Book : ", font=Style.font2_i, bg='lightblue').place(x=90, y=160)
-        self.level = ttk.Combobox(self.frame, font=Style.font1_i, values=books_available, width=20)
-        self.level.current(0)
-        self.level.place(x=230, y=160)
+        self.book = ttk.Combobox(self.frame, font=Style.font1_i, values=books_available, width=20)
+        self.book.current(0)
+        self.book.place(x=230, y=160)
 
         Label(self.frame, text="Quantity : ", font=Style.font2_i, bg='lightblue').place(x=90, y=200)
         self.quantity = Spinbox(self.frame, font=Style.font2_i,from_=1,to=20,width=19)
@@ -34,7 +36,7 @@ class AddBorrowingPage:
         self.todate.place(x=230, y=280)
 
         #  buttons valadation
-        Button(self.frame,font=('Arial',12,'italic'),text='           Clear           ',command=self.clear_filds).place(x=110,y=360)
+        Button(self.frame, font=('Arial',12,'italic'), text='           Clear           ', command=self.clear_fields).place(x=110, y=360)
 
         Button(self.frame,font=('Arial',12,'italic'),text='        Add new borrow        ',command=self.add_borrow).place(x=297,y=360)
 
@@ -43,8 +45,16 @@ class AddBorrowingPage:
         # affichage de de la page ...
         self.frame.place(x=0, y=0)
 
-    def clear_filds(self):
+    def clear_fields(self):
         self.username.delete(0,END)
     def add_borrow(self):
         mb.showinfo("Information", ' Borrow added succesfully !')
-        self.clear_filds()
+        self.clear_fields()
+
+        id = randint(300, 900) + randint(2000, 9000)
+        request = "insert into Borrowing(id, username, book, quantity, datestart, dateend) values(?,?,?,?,?,?)"
+        params = (id, self.username.get(), self.book.get(), self.quantity.get(), self.fromdate.get_date(),self.todate.get_date())
+        if self.username.get()!='' and self.quantity.get() !=0 :
+            Request().post_request_with_params(request, params)
+        else:
+            pass
