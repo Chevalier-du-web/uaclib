@@ -12,7 +12,7 @@ class Request:
         try:
             self.cursor.execute(request, params)
             self.database.commit()
-        except:
+        except :
             raise mb.showerror(" Warning", "A error occured !")
         # save changes
         return 0
