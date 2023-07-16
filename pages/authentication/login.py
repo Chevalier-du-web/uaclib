@@ -88,7 +88,7 @@ class LoginPage:
             else:
                 if self.password_entry.get() == data[0][5] :
                     mb.showinfo("Information", "You are logged !")
-                    HomePage(self.frame, self.width, self.height,self.username_entry.get())
+                    HomePage(self.frame, self.width, self.height,data[0][0],self.username_entry.get())
                 else:
                     mb.showerror("Error", "Invalide password !")
         else:

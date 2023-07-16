@@ -1,42 +1,20 @@
 from tkinter import *
 from PIL import ImageTk,Image
-
+from  tkinter import  messagebox as mb
 from backend.request_file import Request
 from components.style import Style
 from tkinter import filedialog, ttk
 
 
 class ProfilPage:
-    def __init__(self,root,width,height, username):
+    def __init__(self,root,width,height, id):
+        self.width = width
+        self.height = height
+        self.id = id
         self.frame = Canvas(root,height=height, width=width,bg='lightblue')
-        #  getting data ...
-        request = "select * from User where username=?"
-        params = (username,)
-        data = Request().get_request_with_params(request,params)
-        print(data)
 
-
-        #  page -title
-        Label(self.frame,text=f"Profil-Page       ID : {data[0][0]}",font=Style.font4_i,bg='lightblue').place(x=50,y=20)
-
-        self.frame_info = Canvas(self.frame,width=550,height=450,bg='teal')
-
-        # infos for current user...
-        Label(self.frame_info,text=f"Username :  {data[0][1]}",font=Style.font3_i,bg='teal',fg='white').place(x=60,y=50)
-        Label(self.frame_info,text=f"Email :  {data[0][2]}",font=Style.font3_i,bg='teal',fg='white').place(x=60,y=100)
-        Label(self.frame_info,text=f"password :  {data[0][5]}",font=Style.font3_i,bg='teal',fg='white').place(x=60,y=150)
-        Label(self.frame_info,text=f"Level :  {data[0][3]}",font=Style.font3_i,bg='teal',fg='white').place(x=60,y=200)
-        Label(self.frame_info,text=f"Sex :  {data[0][-1]}",font=Style.font3_i,bg='teal',fg='white').place(x=60,y=250)
-        Label(self.frame_info,text=f"Phone :  {data[0][4]}",font=Style.font3_i,bg='teal',fg='white').place(x=60,y=300)
-
-
-        Button(self.frame_info,text="       back       ",font=Style.font2_b,command=self.frame.destroy).place(x=60,y=350)
-        Button(self.frame_info,text="    edit profil    ",font=Style.font2_b,command=self.edit_user).place(x=340,y=350)
-
-
-
-        self.frame_info.place(x=40,y=80)
-
+        # information of user
+        self.user_info(id)
 
         self.frame_img = Canvas(self.frame, width=350, height=450, bg='grey')
         self.photo = 'assets/logo.png'
@@ -88,5 +66,48 @@ class ProfilPage:
         self.frame_edit.place(x=40, y=80)
 
     def save_profil(self):
-        request = ""
+
+        request = "update User set username=?, email=?, password=?, level=?, sex=?, phone=? where id=?"
+        params = (self.username.get(),self.email.get(),self.password.get(),self.level.get(),
+                  self.sex.get(),self.phone.get(),self.id)
+        if self.username.get()!='' and self.email.get()!='' and self.password.get()!='' and self.phone.get()!='' :
+            Request().post_request_with_params(request,params)
+            mb.showinfo("Information", "Data updated succesfully !")
+            self.frame_edit.destroy()
+
+        else:
+            mb.showwarning("Warning", "All fields are required !")
+    def user_info(self,id):
+        #  getting data ...
+        request = "select * from User where id=?"
+        params = (id,)
+        data = Request().get_request_with_params(request, params)
+
+        #  page -title
+        Label(self.frame, text=f"Profil-Page       ID : {data[0][0]}", font=Style.font4_i, bg='lightblue').place(x=50,
+                                                                                                                 y=20)
+
+        self.frame_info = Canvas(self.frame, width=550, height=450, bg='teal')
+
+        # infos for current user...
+        Label(self.frame_info, text=f"Username :  {data[0][1]}", font=Style.font3_i, bg='teal', fg='white').place(x=60,
+                                                                                                                  y=50)
+        Label(self.frame_info, text=f"Email :  {data[0][2]}", font=Style.font3_i, bg='teal', fg='white').place(x=60,
+                                                                                                               y=100)
+        Label(self.frame_info, text=f"password :  {data[0][5]}", font=Style.font3_i, bg='teal', fg='white').place(x=60,
+                                                                                                                  y=150)
+        Label(self.frame_info, text=f"Level :  {data[0][3]}", font=Style.font3_i, bg='teal', fg='white').place(x=60,
+                                                                                                               y=200)
+        Label(self.frame_info, text=f"Sex :  {data[0][-1]}", font=Style.font3_i, bg='teal', fg='white').place(x=60,
+                                                                                                              y=250)
+        Label(self.frame_info, text=f"Phone :  {data[0][4]}", font=Style.font3_i, bg='teal', fg='white').place(x=60,
+                                                                                                               y=300)
+
+        Button(self.frame_info, text="       back       ", font=Style.font2_b, command=self.frame.destroy).place(x=60,
+                                                                                                                 y=350)
+        Button(self.frame_info, text="    edit profil    ", font=Style.font2_b, command=self.edit_user).place(x=340,
+                                                                                                              y=350)
+
+        self.frame_info.place(x=40, y=80)
+
 
