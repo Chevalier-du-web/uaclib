@@ -49,7 +49,7 @@ class LoginPage:
         password_lbl=Label(frame2,text="Password",bg="white",font=("Microsoft Yahei UI Light",13))
         password_lbl.place(x=190,y=300)
         
-        self.password_entry=Entry(frame2,highlightthickness=0,relief=FLAT,bg="white",fg="black",font=("Microsoft Yahei UI Light",13,"bold"))
+        self.password_entry=Entry(frame2,highlightthickness=0,relief=FLAT,bg="white",fg="black",font=("Microsoft Yahei UI Light",13))
         self.password_entry.place(x=190,y=340,width=250)
 
         
@@ -81,7 +81,6 @@ class LoginPage:
         if self.username_entry.get()!='' and self.password_entry.get()!='' :
             params = (self.username_entry.get(),)
             data = Request().get_request_with_params(request,params)
-            print(data)
             # check result
             if len(data) == 0 :
                 mb.showwarning("Warning", "Unregistered user !")

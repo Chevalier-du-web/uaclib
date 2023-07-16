@@ -1,8 +1,11 @@
 #importation des dependences ...
+import random
 from tkinter import *
 from tkinter import messagebox as md, ttk
+from backend.request_file import Request
 from components.style import Style
 from PIL import ImageTk,Image
+
 
 
 
@@ -67,8 +70,19 @@ class AddUserPage:
         self.frame.place(x=0, y=0)
 
     def add_user(self):
-        md.showinfo('Information','  User added successfully !  ')
-        self.clear_data()
+        
+        id = random.randint(200,900) + random.randint(2000,9000)
+        
+        #request to show user added
+        request="insert into User(id,username,email,level,phone,password,sex) values(?,?,?,?,?,?,?)"
+        params=(id, self.username.get(),self.email.get(),self.level.get(),self.phone.get(),self.password.get(),self.sex.get())
+        if self.username.get()!='' and self.email.get()!='' and self.password.get()!='' and self.password.get()!='':
+            Request().post_request_with_params(request,params)            
+            md.showinfo('Information','  User added successfully !  ')
+            
+            self.clear_data()
+        else:
+            md.showwarning("Warning","All fields are required")
 
     def clear_data(self):
         #  clear all fields
@@ -79,3 +93,9 @@ class AddUserPage:
         self.phone.delete(0, END)
         self.level.delete(0, END)
         self.password.delete(0, END)
+<<<<<<< HEAD
+
+    
+        
+=======
+>>>>>>> main

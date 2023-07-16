@@ -126,12 +126,15 @@ class RegisterPage:
         params = (id,self.username_entry.get(), self.email_entry.get(),
                   self.level.get(), self.phone_entry.get(), self.password_entry.get(),
                   self.gender.get())
-        print(params)
         if self.username_entry.get() != '' and self.email_entry.get() != '' and self.phone_entry.get() != '' and self.phone_entry.get() != '' :
             result = Request().post_request_with_params(request,params)
             mb.showinfo("Information", "You are registed !")
             v = Request().get_request_without_params("select * from User")
+<<<<<<< HEAD
+            HomePage(self.frame, self.width, self.height,self.username_entry.get())
+=======
             print("database ; ",v)
             HomePage(self.frame, self.width, self.height,id,self.username_entry.get())
+>>>>>>> main
         else:
             mb.showwarning("Warning", "All fields are required !")
