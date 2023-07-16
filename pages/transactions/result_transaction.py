@@ -1,7 +1,7 @@
 #importation des dependences ...
 from tkinter import *
 from tkinter import ttk
-
+from tkinter import messagebox as mb
 from backend.request_file import Request
 from components.style import Style
 from pages.borrowing.add_borrow import AddBorrowingPage
@@ -28,6 +28,8 @@ class ResultTransactionPage:
         table.place(x=90, y=80)
         data = Request().get_request_with_params('select * from Borrowing where username=?',(username,))
         data2 = Request().get_request_with_params('select * from Reservation where username=?', (username,))
+        data3 = Request().get_request_with_params('select * from Returns where username=?', (username,))
+
         books = []
         if len(data) !=0 :
             for item in data:
@@ -39,13 +41,17 @@ class ResultTransactionPage:
                 books.append(item[2])
                 table.insert('',index=0, values=("Reservation",item[2],item[-2], item[-1]))
 
-        Button(self.frame,font=('Arial',12,'italic'),text='           Return book           ',
+        if len(data) != 0 or len(data2) !=0 :
+            Button(self.frame,font=('Arial',12,'italic'),text='           Return book           ',
                command=lambda : ReturnBookPage(self.frame,width,height,username,books),bg='teal',fg='white').place(x=700,y=340)
-
+        else:
+            Button(self.frame, font=('Arial', 12, 'italic'), text='           Return book           ',
+                   command=lambda: mb.showwarning('Warning','Not transaction found !'), bg='teal',
+                   fg='white').place(x=700, y=340)
         # more information
         Label(self.frame,text=f'Total of reservations  :  {len(data2)}',font=Style.font2_i,bg='lightblue').place(x=90,y=330)
         Label(self.frame,text=f'Total of borrowings  :  {len(data)}',font=Style.font2_i,bg='lightblue').place(x=90,y=370)
-        Label(self.frame,text=f'Total of returns  :  {len(data)}',font=Style.font2_i,bg='lightblue').place(x=90,y=410)
+        Label(self.frame,text=f'Total of returns  :  {len(data3)}',font=Style.font2_i,bg='lightblue').place(x=90,y=410)
 
 
 

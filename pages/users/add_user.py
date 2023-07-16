@@ -63,7 +63,7 @@ class AddUserPage:
                command=self.clear_data).place(x=430, y=400)
         Button(self.frame, font=('Arial', 14, 'italic'), text='           Add user           ',
                command=lambda: self.add_user()).place(x=640, y=400)
-        
+
         from pages.users.users_page import UsersPage
         Button(self.frame,font=('Arial',12,'italic'),text='           back           ',
                command=lambda: UsersPage(self.frame,self.width, self.height)
