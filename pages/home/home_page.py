@@ -2,7 +2,6 @@
 from tkinter import *
 from components.style import Style
 from PIL import ImageTk,Image
-
 from pages.books.book_page import BooksPage
 from pages.borrowing.borrowing_page import BorrowingPage
 from pages.profil_user.profil_page import ProfilPage
@@ -13,7 +12,7 @@ from pages.users.users_page import UsersPage
 
 
 class HomePage:
-    def __init__(self,root,width,height,username):
+    def __init__(self,root,width,height,id,username):
         self.frame = Canvas(root,width=width, height=height)
         self.siderbar = Canvas(self.frame,height=65, width=width,bg='lightgreen')
         Label(self.siderbar,text="UACLIB APP",bg='lightgreen',font=Style.font4_i).place(x=70,y=20)
@@ -34,7 +33,8 @@ class HomePage:
 
         Label(self.menu,text="Services",font=Style.font5_b,bg='grey',fg='white').place(x=55,y=45)
         # profil page ..
-        btn_profil = Button(self.menu, text="Profil",font=Style.font1_i, command=lambda: ProfilPage(self.body,width-(width//5),height-65))
+        btn_profil = Button(self.menu, text="Profil",font=Style.font1_i,
+                            command=lambda: ProfilPage(self.body,width-(width//5),height-65,id))
         btn_profil.place(x=6, y=120,width=width//5-8)
 
         # list of users ...
